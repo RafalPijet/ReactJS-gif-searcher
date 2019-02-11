@@ -1,0 +1,27 @@
+{
+  "name": "ls",
+  "version": "1.0.0",
+  "description": "gif searcher",
+  "main": "js/script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RafalPijet/ReactJS-gif-searcher.git"
+  },
+  "keywords": [
+    "gif",
+    "search"
+  ],
+  "author": "LopezPL",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RafalPijet/ReactJS-gif-searcher/issues"
+  },
+  "homepage": "https://github.com/RafalPijet/ReactJS-gif-searcher#readme",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}
