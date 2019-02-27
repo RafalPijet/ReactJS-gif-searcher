@@ -5,7 +5,8 @@
   "main": "js/script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "http-server"
+    "start": "http-server -c-1",
+    "watch": "babel js/script.js --watch --out-file js/script-compiled.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,9 @@
   "homepage": "https://github.com/RafalPijet/ReactJS-gif-searcher#readme",
   "dependencies": {
     "http-server": "^0.11.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1"
   }
 }

@@ -13,29 +13,45 @@ App = React.createClass({
         this.setState({
             loading: true
         });
-        this.getGif(searchingText, function (gif) {
-            this.setState({
-                loading: false,
-                gif: gif,
-                searchingText: searchingText
-            });
-        }.bind(this));
-    },
-    getGif: function(searchingText, callback) {
-        var url = GIPHY_API_URL + "/v1/gifs/random?api_key=" + GIPHY_PUB_KEY + "&tag=" + searchingText;
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", url);
-        xhr.onload = function() {
-            if (xhr.status == 200) {
-                var data = JSON.parse(xhr.responseText).data;
+        this.getGif(searchingText)
+
+            .then(function (response) {
+                var data = JSON.parse(response).data;
                 var gif = {
                     url: data.images.fixed_width_downsampled.url,
                     sourceUrl: data.url
                 };
-                callback(gif);
+                this.setState({
+                    loading: false,
+                    gif: gif,
+                    searchingText: searchingText
+                });
+            }.bind(this))
+
+            .catch(function (error) {
+                console.log("Something went wrong", error)
+            })
+    },
+    getGif: function(searchingText) {
+        return new Promise(
+            function (resolve, reject) {
+                const url = GIPHY_API_URL + "/v1/gifs/random?api_key=" + GIPHY_PUB_KEY + "&tag=" + searchingText;
+                const xhr = new XMLHttpRequest();
+                xhr.onload = function () {
+
+                    if (this.status === 200) {
+                        resolve(this.response);
+                    } else {
+                        reject(new Error(this.statusText));
+                    }
+                };
+                xhr.onerror = function () {
+                    reject(new Error(`XMLHttpRequest Error:  ${this.statusText}`));
+                };
+                xhr.open("GET", url);
+                xhr.send();
             }
-        };
-        xhr.send();
+        )
     },
 
     render: function () {
@@ -57,4 +73,4 @@ App = React.createClass({
             </div>
         );
     }
-});
+});/*TODO*/

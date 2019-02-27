@@ -1,4 +1,4 @@
-Search = React.createClass({
+Search = React.createClass({/*TODO*/
     getInitialState() {
       return {
           searchingText: ""
@@ -12,7 +12,7 @@ Search = React.createClass({
         });
 
         if (searchingText.length > 2) {
-            this.props.onSearch(searchingText);/*TODO*/
+            this.props.onSearch(searchingText);
         }
     },
 
@@ -33,6 +33,6 @@ Search = React.createClass({
                       onKeyUp={this.handleKeyUp}
                       placeholder="Tutaj wpisz wyszukiwaną frazę"
                       style={styles}
-                      value={this.state.searchingText}/> /*TODO*/
+                      value={this.state.searchingText}/>
     }
 });
