@@ -1,12 +1,13 @@
-Search = React.createClass({/*TODO*/
-    getInitialState() {
-      return {
-          searchingText: ""
-      };
-    },
+Search = React.createClass({
+   getInitialState: function () {
+       return {
+           searchingText: ""
+       };
+   },
 
-    handleChange: function(event) {
+    handleSearch: function (event) {
         var searchingText = event.target.value;
+
         this.setState({
             searchingText: searchingText
         });
@@ -16,23 +17,25 @@ Search = React.createClass({/*TODO*/
         }
     },
 
-    handleKeyUp: function(event) {
-        if (event.keyCode === 13) {
-            this.props.onSearch(this.state.searchingText);
-        }
+    handleKeyUp: function (event) {
+
+       if (event.keyCode === 13) {
+           this.props.onSearch(this.state.searchingText);
+       }
     },
 
-    render: function() {
+    render: function () {
         var styles = {
             fontSize: "1.5em",
             width: "90%",
             maxWidth: "350px"
         };
-        return <input type="text"
-                      onChange={this.handleChange}
-                      onKeyUp={this.handleKeyUp}
-                      placeholder="Tutaj wpisz wyszukiwaną frazę"
-                      style={styles}
-                      value={this.state.searchingText}/>
+
+        return <input type={"text"}
+                        onChange={this.handleSearch}
+                        onKeyUp={this.handleKeyUp}
+                        placeholder={"Tutaj wpisz wyszukiwaną frazę"}
+                        style={styles}
+                        value={this.state.searchingText}/>
     }
 });
